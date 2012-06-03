@@ -98,7 +98,7 @@ TARGET_HAVE_BYPASS := false
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 #TARGET_USES_OVERLAY := true
-TARGET_QCOM_HDMI_OUT := true
+#TARGET_QCOM_HDMI_OUT := true
 BOARD_EGL_CFG := device/htc/jewel/configs/egl.cfg
 
 # RIL
