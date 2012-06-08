@@ -104,8 +104,10 @@ BOARD_EGL_CFG := device/htc/jewel/configs/egl.cfg
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 
-# USB
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
+# vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_MAX_PARTITIONS := 38
 
 # Wifi
 WPA_SUPPLICANT_VERSION           := VER_0_8_X

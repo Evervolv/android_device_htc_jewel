@@ -2,16 +2,15 @@ import init.usb.rc
 
 on early-init
     
-    export EXTERNAL_STORAGE /mnt/sdcard
-    mkdir /mnt/sdcard 0000 system system
+    export EXTERNAL_STORAGE /mnt/emmc
+    mkdir /mnt/emmc 0000 system system
     # for backwards compatibility
-    symlink /mnt/sdcard /sdcard
+    symlink /mnt/emmc /emmc
 
-    export EXTERNAL_STORAGE2 /mnt/sdcard/ext_sd
-    mkdir /mnt/sdcard/ext_sd 0000 system system
+    mkdir /mnt/sdcard/ 0000 system system
     # for backwards compatibility
-    symlink /mnt/sdcard/ext_sd /sdcard2
-    
+    symlink /mnt/sdcard/ /sdcard
+
 on emmc
     mkdir /system
     mkdir /data 0771 system system
