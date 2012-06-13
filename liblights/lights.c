@@ -314,6 +314,6 @@ const struct hw_module_t HAL_MODULE_INFO_SYM = {
   .version_minor = 0,
   .id = LIGHTS_HARDWARE_MODULE_ID,
   .name = "Lights module",
-  .author = "The CyanogenMod Project",
+  .author = "Google, Inc.",
   .methods = &lights_module_methods,
 };

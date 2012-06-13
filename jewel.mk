@@ -64,7 +64,6 @@ PRODUCT_COPY_FILES += device/htc/jewel/configs/thermald.conf:system/etc/thermald
 # vold and apns config
 PRODUCT_COPY_FILES += \
     device/htc/jewel/configs/vold.fstab:system/etc/vold.fstab \
-    device/htc/jewel/apns.xml:system/etc/apns.xml \
     device/htc/jewel/apns-conf.xml:system/etc/apns-conf.xml
 
 # wifi config
@@ -159,20 +158,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hdmid
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Live wallpapers
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    librs_jni
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -193,7 +181,6 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/firmware/leia_pfp_470.fw:/system/etc/firmware/leia_pfp_470.fw \
     device/htc/jewel/firmware/leia_pm4_470.fw:/system/etc/firmware/leia_pm4_470.fw \
     device/htc/jewel/firmware/vidc_1080p.fw:/system/etc/firmware/vidc_1080p.fw
-#    device/htc/jewel/firmware/wcd9310_anc.bin:/system/etc/firmware/wcd9310_anc.bin
 
 # Wifi firmware
 PRODUCT_COPY_FILES += \
@@ -242,9 +229,6 @@ $(call inherit-product-if-exists, vendor/htc/jewel/jewel-vendor.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-# gapps Installation
-$(call inherit-product-if-exists, vendor/twisted/google-vendor.mk)
 
 PRODUCT_NAME := htc_jewel
 PRODUCT_DEVICE := jewel
