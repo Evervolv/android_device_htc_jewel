@@ -10,7 +10,6 @@ ro.hwui.text_cache_height=256
 # RIL properties
 mobiledata.interfaces=rmnet0
 ro.telephony.ril_class=HTCQualcommRIL
-DEVICE_PROVISIONED=1
 rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 ro.vendor.extension_library=/system/lib/libqc-opt.so
@@ -28,17 +27,21 @@ persist.rild.ril.ltedr=0
 persist.rild.ril.ltedrtable=max_retries=infinite,10000
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
+telephony.lteOnCdmaDevice=1
+
+# graphics
+ro.opengles.version=131072
+com.qc.hardware=true
+com.qc.hdmi_out=true
 debug.sf.hw=1
 debug.egl.hw=1
 debug.composition.type=dyn
-
 ro.sf.compbypass.enable=1
 debug.enabletr=true
 debug.qctwa.preservebuf=1
 dev.pm.dyn_samplingrate=1
 
 # Default network type.
-# 4 => CDMA mode preferred.
 ro.telephony.default_network=8
 
 # system props for the cne module
@@ -76,20 +79,14 @@ htc.audio.enable_dmic=1
 persist.htc.audio.pcm.samplerate=44100
 persist.htc.audio.pcm.channels=2
 
-# system props for the data modules
-#
-ro.use_data_netmgrd=true
-persist.data_netmgrd_mtu=1428
 #
 # system props for telephony modules
 #
 #device supports LTE
 ro.config.lte=true
-#device supports EHRPD
-#ro.config.ehrpd=true
 #device supports simultaneous 1x voice + LTE
 ro.config.svlte1x=true
- 
+
 # For Verizon data retry configuration
 ro.cdma.data_retry_config = max_retries=infinite,0,0,60000,120000,480000,900000
  
@@ -102,9 +99,6 @@ ro.ril.gprsclass = 12
 ro.ril.hsdpa.category = 10
 ro.ril.hsupa.category = 6
 ro.ril.hsxpa = 3
- 
-# For the default value of agps
-ro.ril.def.agps.mode = 6
  
 # For HSDPA low throughput
 ro.ril.disable.power.collapse = 1
@@ -122,16 +116,6 @@ ro.ril.def.agps.mode = 6
 
 # audio
 lpa.decode=true
-
-# graphics
-debug.composition.type=dyn
-debug.enabletr=true
-debug.sf.hw=1
-ro.opengles.version=131072
-ro.sf.compbypass.enable=1
-
-com.qc.hardware=true
-com.qc.hdmi_out=true
 
 # qcom cpu governor service
 dev.pm.dyn_samplingrate=1

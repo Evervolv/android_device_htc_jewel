@@ -19,6 +19,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/jewel/overlay
 
+## CDMA Sprint stuffs
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.com.google.clientidbase=android-sprint-us \
+ro.com.google.locationfeatures=1 \
+ro.cdma.home.operator.numeric=310120 \
+ro.cdma.home.operator.alpha=Sprint
+
 # Boot ramdisk setup
 PRODUCT_COPY_FILES += \
     device/htc/jewel/prebuilt/init:root/init \
