@@ -30,7 +30,7 @@ PRODUCT_COPY_FILES +=  \
 
 # qHD overlay
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/ev/overlay/qhd
+    vendor/ev/overlay/720p
 
 # Hot reboot
 PRODUCT_PACKAGE_OVERLAYS += \
