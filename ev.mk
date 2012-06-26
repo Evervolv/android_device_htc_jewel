@@ -26,7 +26,7 @@ PRODUCT_PACKAGES += \
 
 # Copy compatible prebuilt files
 PRODUCT_COPY_FILES +=  \
-    vendor/ev/prebuilt/qhd/media/bootanimation.zip:system/media/bootanimation.zip
+    vendor/ev/prebuilt/720p/media/bootanimation.zip:system/media/bootanimation.zip
 
 # qHD overlay
 PRODUCT_PACKAGE_OVERLAYS += \
