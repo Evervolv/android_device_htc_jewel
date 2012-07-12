@@ -32,9 +32,9 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/ev/overlay/720p
 
-# Hot reboot
-PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/ev/overlay/hot_reboot
+# Hot reboot (Commented until implemented.)
+#PRODUCT_PACKAGE_OVERLAYS += \
+#    vendor/ev/overlay/hot_reboot
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
