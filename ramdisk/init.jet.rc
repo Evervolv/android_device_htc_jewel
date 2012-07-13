@@ -1,5 +1,3 @@
-import init.usb.rc
-
 on early-init
     
     export EXTERNAL_STORAGE /mnt/emmc
