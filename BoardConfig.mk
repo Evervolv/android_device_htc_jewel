@@ -102,7 +102,7 @@ TARGET_USES_ION := true
 BOARD_EGL_CFG := device/htc/jewel/configs/egl.cfg
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_LIBRIL := true
 
 # vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
