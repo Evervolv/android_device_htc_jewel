@@ -66,9 +66,6 @@ TARGET_PREBUILT_KERNEL := device/htc/jewel/prebuilt/kernel
 #TARGET_KERNEL_CONFIG := jewel_defconfig
 #TARGET_KERNEL_SOURCE := kernel/htc/jewel
 
-# Init
-TARGET_PROVIDES_INIT_RC := true
-
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 
