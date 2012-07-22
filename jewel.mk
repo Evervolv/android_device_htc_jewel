@@ -14,34 +14,25 @@
 # limitations under the License.
 #
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/jewel/overlay
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-## CDMA Sprint stuffs
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.com.google.clientidbase=android-sprint-us \
-ro.com.google.locationfeatures=1 \
-ro.cdma.home.operator.numeric=310120 \
-ro.cdma.home.operator.alpha=Sprint
+# common msm8960 configs
+$(call inherit-product, device/htc/msm8960-common/msm8960.mk)
+
+DEVICE_PACKAGE_OVERLAYS += device/htc/jewel/overlay
 
 # Boot ramdisk setup
 PRODUCT_COPY_FILES += \
     device/htc/jewel/ramdisk/init.jet.rc:root/init.jet.rc \
-    device/htc/jewel/ramdisk/init.qcom.sh:root/init.qcom.sh \
     device/htc/jewel/ramdisk/init.jet.usb.rc:root/init.jet.usb.rc \
     device/htc/jewel/ramdisk/ueventd.jet.rc:root/ueventd.jet.rc
 
-# Qualcomm scripts
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    device/htc/jewel/configs/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
-    device/htc/jewel/configs/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
-    device/htc/jewel/configs/init.qcom.modem_links.sh:/system/etc/init.qcom.modem_links.sh \
-    device/htc/jewel/configs/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
-    device/htc/jewel/configs/init.qcom.q6_links.sh:/system/etc/init.qcom.q6_links.sh \
-    device/htc/jewel/configs/init.qcom.radio_links.sh:/system/etc/init.qcom.radio_links.sh \
-    device/htc/jewel/configs/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
-    device/htc/jewel/configs/init.qcom.wcnss_links.sh:/system/etc/init.qcom.wcnss_links.sh \
-    device/htc/jewel/configs/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
+## CDMA Sprint stuffs
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.clientidbase=android-sprint-us \
+    ro.com.google.locationfeatures=1 \
+    ro.cdma.home.operator.numeric=310120 \
+    ro.cdma.home.operator.alpha=Sprint
 
 # recovery and custom charging
 PRODUCT_COPY_FILES += \
@@ -53,16 +44,8 @@ PRODUCT_COPY_FILES += \
 # GPS config
 PRODUCT_COPY_FILES += device/common/gps/gps.conf_US:system/etc/gps.conf
 
-# Media config
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/htc/jewel/configs/media_codecs.xml:system/etc/media_codecs.xml
-
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/jewel/configs/AudioBTID.csv:system/etc/AudioBTID.csv
-
-# QC thermald config
-PRODUCT_COPY_FILES += device/htc/jewel/configs/thermald.conf:system/etc/thermald.conf
 
 # vold and apns config
 PRODUCT_COPY_FILES += \
@@ -118,25 +101,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/jewel/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/jewel/idc/projector_input.idc:system/usr/idc/projector_input.idc
-# Audio
-PRODUCT_PACKAGES += \
-    alsa.msm8960 \
-    audio.a2dp.default \
-    audio_policy.msm8960 \
-    audio.primary.msm8960 \
-    libalsa-intf \
-    libaudioutils
-
-# Graphics
-PRODUCT_PACKAGES += \
-    copybit.msm8960 \
-    gralloc.msm8960 \
-    hwcomposer.msm8960 \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libQcomUI \
-    libtilerenderer
 
 # GPS
 #PRODUCT_PACKAGES += \
@@ -146,24 +110,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    lights.jewel
 
-# OMX
-PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
-    libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libstagefrighthw
-
-# HDMI
-PRODUCT_PACKAGES += \
-    hdmid
-
-# USB
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -176,37 +122,8 @@ PRODUCT_COPY_FILES += $(shell \
     | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
     | tr '\n' ' ')
 
-# MSM8960 firmware
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/firmware/a225p5_pm4.fw:/system/etc/firmware/a225p5_pm4.fw \
-    device/htc/jewel/firmware/a225_pfp.fw:/system/etc/firmware/a225_pfp.fw \
-    device/htc/jewel/firmware/a225_pm4.fw:/system/etc/firmware/a225_pm4.fw \
-    device/htc/jewel/firmware/leia_pfp_470.fw:/system/etc/firmware/leia_pfp_470.fw \
-    device/htc/jewel/firmware/leia_pm4_470.fw:/system/etc/firmware/leia_pm4_470.fw \
-    device/htc/jewel/firmware/vidc_1080p.fw:/system/etc/firmware/vidc_1080p.fw
-
-# Wifi firmware
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/firmware/WCNSS_cfg.dat:/system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    device/htc/jewel/firmware/WCNSS_qcom_cfg.ini:/system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    device/htc/jewel/firmware/WCNSS_qcom_wlan_nv.bin:/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
-
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardwardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.compass.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 # Extra properties
@@ -232,8 +149,6 @@ $(call inherit-product-if-exists, vendor/htc/jewel/jewel-vendor.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 PRODUCT_NAME := htc_jewel
 PRODUCT_DEVICE := jewel
