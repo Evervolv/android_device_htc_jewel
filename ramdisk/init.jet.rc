@@ -1,13 +1,19 @@
 on early-init
     
-    export EXTERNAL_STORAGE /mnt/emmc
-    mkdir /mnt/emmc 0000 system system
+    # Internal storage
+    export EXTERNAL_STORAGE /storage/sdcard0
+    mkdir /storage 0050 system sdcard_r
+    mkdir /storage/sdcard0 0000 system system
     # for backwards compatibility
-    symlink /mnt/emmc /emmc
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
 
-    mkdir /mnt/sdcard/ 0000 system system
+    # SD-Card
+    export SECONDARY_STORAGE /storage/sdcard1
     # for backwards compatibility
-    symlink /mnt/sdcard/ /sdcard
+    mkdir /storage/sdcard1 0000 system system
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
 
 on emmc
     mkdir /system
