@@ -1,3 +1,5 @@
+import init.jet.usb.rc
+
 on early-init
     
     # Internal storage
