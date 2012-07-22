@@ -25,7 +25,6 @@ ro.cdma.home.operator.alpha=Sprint
 
 # Boot ramdisk setup
 PRODUCT_COPY_FILES += \
-    device/htc/jewel/prebuilt/init:root/init \
     device/htc/jewel/ramdisk/init.jet.rc:root/init.jet.rc \
     device/htc/jewel/ramdisk/init.qcom.sh:root/init.qcom.sh \
     device/htc/jewel/ramdisk/init.jet.usb.rc:root/init.jet.usb.rc \
