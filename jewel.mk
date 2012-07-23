@@ -103,6 +103,10 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/jewel/idc/projector_input.idc:system/usr/idc/projector_input.idc
 
+# Audio config
+PRODUCT_PACKAGES += \
+    audio_policy.conf
+
 # GPS
 #PRODUCT_PACKAGES += \
 #    gps.jewel \
