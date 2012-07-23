@@ -103,6 +103,11 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/jewel/idc/projector_input.idc:system/usr/idc/projector_input.idc
 
+# Media configs
+PRODUCT_COPY_FILES += \
+    device/htc/msm8960-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/msm8960-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+
 # Audio config
 PRODUCT_PACKAGES += \
     audio_policy.conf
