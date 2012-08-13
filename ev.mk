@@ -1,5 +1,7 @@
-# Inherit AOSP device configuration for inc.
+# Inherit AOSP device configuration for jewel
 $(call inherit-product, device/htc/jewel/jewel.mk)
+# Inherit cdma config
+$(call inherit-product, vendor/ev/config/cdma.mk)
 
 # Inherit some common evervolv stuff.
 $(call inherit-product, vendor/ev/config/common_full_phone.mk)
@@ -32,9 +34,9 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/ev/overlay/720p
 
-# Hot reboot (Commented until implemented.)
-#PRODUCT_PACKAGE_OVERLAYS += \
-#    vendor/ev/overlay/hot_reboot
+# Hot reboot
+PRODUCT_PACKAGE_OVERLAYS += \
+    vendor/ev/overlay/hot_reboot
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
