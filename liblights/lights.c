@@ -62,10 +62,11 @@ enum {
 };
 
 enum {
-  BLINK_MODE_VERY_SHORT = 1,
-  BLINK_MODE_SHORT = 2,
-  BLINK_MODE_NORMAL= 3,
-  BLINK_MODE_LONG= 4,
+  BLINK_MODE_OFF,
+  BLINK_MODE_VERY_SHORT,
+  BLINK_MODE_SHORT,
+  BLINK_MODE_NORMAL,
+  BLINK_MODE_LONG,
 };
 
 static int write_int(const char* path, int value) {
@@ -77,7 +78,7 @@ static int write_int(const char* path, int value) {
   fd = open(path, O_RDWR);
   if (fd < 0) {
     if (already_warned == 0) {
-      LOGE("write_int failed to open %s\n", path);
+      ALOGE("write_int failed to open %s\n", path);
       already_warned = 1;
     }
     return -errno;
@@ -102,7 +103,7 @@ static void set_speaker_light_locked(struct light_device_t *dev,
                                      struct light_state_t *state) {
   unsigned int colorRGB = state->color & 0xFFFFFF;
   unsigned int color = LED_BLANK;
-  unsigned int blinkMode = BLINK_MODE_NORMAL;
+  unsigned int blinkMode = BLINK_MODE_OFF;
 
   if ((colorRGB >> 8) & 0xFF) color = LED_GREEN;
   if ((colorRGB >> 16) & 0xFF) color = LED_AMBER;
@@ -144,7 +145,7 @@ static void set_speaker_light_locked(struct light_device_t *dev,
           write_int(GREEN_BLINK_FILE, 0);
           break;
         default:
-          LOGE("set_led_state colorRGB=%08X, unknown color\n", colorRGB);
+          ALOGE("set_led_state colorRGB=%08X, unknown color\n", colorRGB);
           break;
       }
       break;
@@ -165,8 +166,8 @@ static void set_speaker_light_locked(struct light_device_t *dev,
       }
       break;
     default:
-      LOGE("set_led_state colorRGB=%08X, unknown mode %d\n",
-           colorRGB, state->flashMode);
+      ALOGE("set_led_state colorRGB=%08X, unknown mode %d\n",
+            colorRGB, state->flashMode);
   }
 }
 
@@ -192,7 +193,7 @@ static void set_speaker_light_locked_dual(struct light_device_t *dev,
       write_int (GREEN_BLINK_FILE, 4);
       break;
     default:
-      LOGE("set_led_state (dual) unexpected color: bcolorRGB=%08x\n", bcolorRGB);
+      ALOGE("set_led_state (dual) unexpected color: bcolorRGB=%08x\n", bcolorRGB);
   }
 }
 
@@ -229,7 +230,7 @@ static int set_light_backlight(struct light_device_t* dev,
                                struct light_state_t const* state) {
   int err = 0;
   int brightness = rgb_to_brightness(state);
-  LOGV("%s brightness=%d color=0x%08x", __func__,brightness, state->color);
+  ALOGV("%s brightness=%d color=0x%08x", __func__,brightness, state->color);
   pthread_mutex_lock(&g_lock);
   g_backlight = brightness;
   err = write_int(LCD_BACKLIGHT_FILE, brightness);
@@ -308,7 +309,7 @@ static struct hw_module_methods_t lights_module_methods = {
   .open = open_lights,
 };
 
-const struct hw_module_t HAL_MODULE_INFO_SYM = {
+struct hw_module_t HAL_MODULE_INFO_SYM = {
   .tag = HARDWARE_MODULE_TAG,
   .version_major = 1,
   .version_minor = 0,

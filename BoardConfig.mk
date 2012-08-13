@@ -27,11 +27,6 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
-
-# Workaround for ics compat
-BOARD_NEEDS_MEMORYHEAPPMEM := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := jewel
@@ -47,6 +42,8 @@ TARGET_PREBUILT_KERNEL := device/htc/jewel/prebuilt/kernel
 #TARGET_KERNEL_CONFIG := jewel_defconfig
 #TARGET_KERNEL_SOURCE := kernel/htc/jewel
 
+# Lights
+TARGET_PROVIDES_LIBLIGHTS := true
 
 # Camera
 #BOARD_HAVE_HTC_FFC := true
@@ -55,20 +52,17 @@ TARGET_PREBUILT_KERNEL := device/htc/jewel/prebuilt/kernel
 #BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := jewel
 
-# RIL
-#BOARD_PROVIDES_LIBRIL := true
-
-# vold
+# vold / usb
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 38
 
 # Wifi
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
-WIFI_DRIVER_FW_PATH_P2P          := "p2p"
 WIFI_DRIVER_MODULE_NAME          := prima_wlan
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/prima_wlan.ko"
+
+# NFC
+BOARD_HAVE_NFC := true
 
 #dev:        size     erasesize name
 #mmcblk0p23: 000ffa00 00000200 "misc"

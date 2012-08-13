@@ -30,10 +30,10 @@ PRODUCT_COPY_FILES += \
 
 ## CDMA Sprint stuffs
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.clientidbase=android-sprint-us \
-    ro.com.google.locationfeatures=1 \
-    ro.cdma.home.operator.numeric=310120 \
-    ro.cdma.home.operator.alpha=Sprint
+	ro.com.google.clientidbase=android-sprint-us \
+	ro.com.google.locationfeatures=1 \
+	ro.cdma.home.operator.numeric=310120 \
+	ro.cdma.home.operator.alpha=Sprint
 
 # recovery and custom charging
 PRODUCT_COPY_FILES += \
@@ -48,10 +48,16 @@ PRODUCT_COPY_FILES += device/common/gps/gps.conf_US:system/etc/gps.conf
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/jewel/configs/AudioBTID.csv:system/etc/AudioBTID.csv
 
-# vold and apns config
+# Sound configs
 PRODUCT_COPY_FILES += \
-    device/htc/jewel/configs/vold.fstab:system/etc/vold.fstab \
-    device/htc/jewel/apns-conf.xml:system/etc/apns-conf.xml
+    device/htc/jewel/configs/audio_policy.conf:system/etc/audio_policy.conf
+
+# QC thermald config
+PRODUCT_COPY_FILES += device/htc/jewel/configs/thermald.conf:system/etc/thermald.conf
+
+# vold.fstab
+PRODUCT_COPY_FILES += \
+    device/htc/jewel/configs/vold.fstab:system/etc/vold.fstab
 
 # wifi config
 PRODUCT_COPY_FILES += \
@@ -68,24 +74,9 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/dsp/soundimage/srs_global.cfg:system/etc/soundimage/srs_global.cfg
 
 PRODUCT_COPY_FILES += \
-    device/htc/jewel/dsp/snd_soc_msm/FM_A2DP_REC:/system/etc/snd_soc_msm/FM_A2DP_REC \
-    device/htc/jewel/dsp/snd_soc_msm/FM_A2DP_REC_2x:/system/etc/snd_soc_msm/FM_A2DP_REC_2x \
-    device/htc/jewel/dsp/snd_soc_msm/FM_Digital_Radio:/system/etc/snd_soc_msm/FM_Digital_Radio \
-    device/htc/jewel/dsp/snd_soc_msm/FM_Digital_Radio_2x:/system/etc/snd_soc_msm/FM_Digital_Radio_2x \
-    device/htc/jewel/dsp/snd_soc_msm/FM_REC:/system/etc/snd_soc_msm/FM_REC \
-    device/htc/jewel/dsp/snd_soc_msm/FM_REC_2x:/system/etc/snd_soc_msm/FM_REC_2x \
-    device/htc/jewel/dsp/snd_soc_msm/HiFi:/system/etc/snd_soc_msm/HiFi \
     device/htc/jewel/dsp/snd_soc_msm/HiFi_2x:/system/etc/snd_soc_msm/HiFi_2x \
-    device/htc/jewel/dsp/snd_soc_msm/HiFi_Low_Power:/system/etc/snd_soc_msm/HiFi_Low_Power \
-    device/htc/jewel/dsp/snd_soc_msm/HiFi_Low_Power_2x:/system/etc/snd_soc_msm/HiFi_Low_Power_2x \
-    device/htc/jewel/dsp/snd_soc_msm/HiFi_Rec:/system/etc/snd_soc_msm/HiFi_Rec \
-    device/htc/jewel/dsp/snd_soc_msm/HiFi_Rec_2x:/system/etc/snd_soc_msm/HiFi_Rec_2x \
     device/htc/jewel/dsp/snd_soc_msm/snd_soc_msm:/system/etc/snd_soc_msm/snd_soc_msm \
-    device/htc/jewel/dsp/snd_soc_msm/snd_soc_msm_2x:/system/etc/snd_soc_msm/snd_soc_msm_2x \
-    device/htc/jewel/dsp/snd_soc_msm/Voice_Call:/system/etc/snd_soc_msm/Voice_Call \
-    device/htc/jewel/dsp/snd_soc_msm/Voice_Call_2x:/system/etc/snd_soc_msm/Voice_Call_2x \
-    device/htc/jewel/dsp/snd_soc_msm/Voice_Call_IP:/system/etc/snd_soc_msm/Voice_Call_IP \
-    device/htc/jewel/dsp/snd_soc_msm/Voice_Call_IP_2x:/system/etc/snd_soc_msm/Voice_Call_IP_2x
+    device/htc/jewel/dsp/snd_soc_msm/snd_soc_msm_2x:/system/etc/snd_soc_msm/snd_soc_msm_2x
 
 # Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
@@ -103,28 +94,46 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/jewel/idc/projector_input.idc:system/usr/idc/projector_input.idc
 
-# Media configs
+# NFCEE access control
+ifeq ($(TARGET_BUILD_VARIANT),user)
+    NFCEE_ACCESS_PATH := device/htc/jewel/configs/nfcee_access.xml
+else
+    NFCEE_ACCESS_PATH := device/htc/jewel/configs/nfcee_access_debug.xml
+endif
 PRODUCT_COPY_FILES += \
-    device/htc/msm8960-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/msm8960-common/configs/media_profiles.xml:system/etc/media_profiles.xml
-
-# Audio config
-PRODUCT_PACKAGES += \
-    audio_policy.conf
+    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # GPS
 #PRODUCT_PACKAGES += \
 #    gps.jewel \
 
 # Lights
-#PRODUCT_PACKAGES += \
-#    lights.jewel
+PRODUCT_PACKAGES += \
+    lights.jet
 
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
+# NFC
+PRODUCT_PACKAGES += \
+    libnfc \
+    libnfc_ndef \
+    libnfc_jni \
+    Nfc \
+    Tag \
+    com.android.nfc_extras
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    make_ext4fs \
-    setup_fs
+   make_ext4fs \
+   e2fsck \
+   setup_fs
+
+# Media profiles
+PRODUCT_COPY_FILES += \
+    device/htc/jewel/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    device/htc/jewel/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 # Kernel Modules
 PRODUCT_COPY_FILES += $(shell \
