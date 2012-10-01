@@ -1,22 +1,24 @@
-# end build properties
 #
 # system.prop for jewel
 #
+
+persist.fuse_sdcard=true
 
 ro.sf.lcd_density=320
 ro.hwui.text_cache_width=2048
 ro.hwui.text_cache_height=256
 
 # RIL properties
-# Default network type.
-ro.telephony.default_network=8
 mobiledata.interfaces=rmnet0
 ro.telephony.ril_class=HTCQualcommRIL
 ro.telephony.ril.v3=subscriptionFromSource
-rild.libpath=/system/lib/libril-qc-qmi-1.so
-rild.libargs=-d /dev/smd0
+
+# Default network type.
+ro.telephony.default_network=8
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 ro.baseband.arch=msm
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
 persist.rild.nitz_long_ons_1=
@@ -31,18 +33,6 @@ persist.rild.ril.ltedrtable=max_retries=infinite,10000
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 telephony.lteOnCdmaDevice=1
-
-# graphics
-ro.opengles.version=131072
-com.qc.hardware=true
-com.qc.hdmi_out=true
-debug.sf.hw=1
-debug.egl.hw=1
-debug.composition.type=dyn
-ro.sf.compbypass.enable=1
-debug.enabletr=true
-debug.qctwa.preservebuf=1
-dev.pm.dyn_samplingrate=1
 
 # system props for the cne module
 #
@@ -66,18 +56,6 @@ persist.cne.be.do.sqi.min=0
 persist.cne.be.do.sqi.max=100
 persist.cne.be.wlan.sqi.min=0
 persist.cne.be.wlan.sqi.max=100
-ro.hdmi.enable=true
-lpa.decode=true
-lpa.tunnel=true
-lpa.use-stagefright=true
-htc.audio.lpa.a2dp=0
-htc.audio.global.state=0
-htc.audio.global.profile=0
-htc.audio.q6.topology=0
-htc.audio.enable_dmic=1
-#export for SoundHound
-persist.htc.audio.pcm.samplerate=44100
-persist.htc.audio.pcm.channels=2
 
 #
 # system props for telephony modules
@@ -87,61 +65,58 @@ ro.config.lte=true
 #device supports simultaneous 1x voice + LTE
 ro.config.svlte1x=true
 
+gsm.sim.operator.alpha = sprint
+gsm.sim.operator.numeric = 310120
+gsm.sim.operator.iso-country = us
+gsm.operator.alpha = sprint
+gsm.operator.numeric = 310120
+gsm.operator.iso-country = us
+ro.cdma.home.operator.numeric=310120
+ro.cdma.home.operator.alpha=Sprint
+keyguard.no_require_sim=true
+
+# Default ecclist
+ro.ril.ecclist=112,911,#911,*911
+
 # For Verizon data retry configuration
 ro.cdma.data_retry_config = max_retries=infinite,0,0,60000,120000,480000,900000
- 
+
 # Modify MMS APN retry timer from 5s to 2s.
 ro.gsm.2nd_data_retry_config = max_retries=3, 2000, 2000, 2000
- 
+
 # RF team request
 ro.ril.enable.dtm = 0
 ro.ril.gprsclass = 12
 ro.ril.hsdpa.category = 10
 ro.ril.hsupa.category = 6
 ro.ril.hsxpa = 3
- 
+
 # For HSDPA low throughput
 ro.ril.disable.power.collapse = 1
- 
-#system props for time-services
-persist.timed.enable=true
- 
-# System props for audio
-persist.audio.fluence.mode=endfire
-persist.audio.vr.enable=false
-persist.audio.handset.mic=analog
 
 # For the default value of agps
 ro.ril.def.agps.mode = 6
 
-# audio
-lpa.decode=true
-
-# qcom cpu governor service
-dev.pm.dyn_samplingrate=1
-
-# wifi
-ro.product.wireless=WCN3660
-wifi.interface=wlan0
-
 # data module
-ro.use_data_netmgrd=true
 persist.data_netmgrd_mtu=1428
+persist.data_netmgrd_nint=16
 
-# for BT HCI transport
-ro.qualcomm.bt.hci_transport=smd
+# For Pyramid China NEL
+ro.ril.enable.prl.recognition = 1
 
-# System prop for switching gps driver to qmi
-persist.gps.qmienabled=true
+# NFC
+debug.nfc.fw_download=true
+debug.nfc.fw_boot_download=false
+debug.nfc.se=true
+ro.nfc.port=I2C
 
 # enable time services
 persist.timed.enable=true
 
-# System property for cabl
-ro.qualcomm.cabl=0
-
-# System property for thermald
-persist.thermal.monitor=true
+# support sdcard2
+ro.sdcard2 = 1
+# For internal fat file system
+ro.phone_fat = 1
 
 # UMS
 persist.sys.usb.config=mass_storage,adb

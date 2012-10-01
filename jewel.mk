@@ -28,13 +28,6 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/ramdisk/ueventd.jet.rc:root/ueventd.jet.rc \
     device/htc/jewel/ramdisk/fstab.jet:root/fstab.jet
 
-## CDMA Sprint stuffs
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.com.google.clientidbase=android-sprint-us \
-	ro.com.google.locationfeatures=1 \
-	ro.cdma.home.operator.numeric=310120 \
-	ro.cdma.home.operator.alpha=Sprint
-
 # recovery and custom charging
 PRODUCT_COPY_FILES += \
     device/htc/jewel/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
@@ -47,10 +40,6 @@ PRODUCT_COPY_FILES += device/common/gps/gps.conf_US:system/etc/gps.conf
 
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/jewel/configs/AudioBTID.csv:system/etc/AudioBTID.csv
-
-# Sound configs
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # QC thermald config
 PRODUCT_COPY_FILES += device/htc/jewel/configs/thermald.conf:system/etc/thermald.conf
@@ -74,8 +63,6 @@ PRODUCT_COPY_FILES += \
     device/htc/jewel/dsp/soundimage/srs_global.cfg:system/etc/soundimage/srs_global.cfg
 
 PRODUCT_COPY_FILES += \
-    device/htc/jewel/dsp/snd_soc_msm/HiFi_2x:/system/etc/snd_soc_msm/HiFi_2x \
-    device/htc/jewel/dsp/snd_soc_msm/snd_soc_msm:/system/etc/snd_soc_msm/snd_soc_msm \
     device/htc/jewel/dsp/snd_soc_msm/snd_soc_msm_2x:/system/etc/snd_soc_msm/snd_soc_msm_2x
 
 # Keylayouts and Keychars
@@ -107,22 +94,17 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES += \
 #    gps.jewel \
 
-# Lights
-PRODUCT_PACKAGES += \
-    lights.jet
-
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
-# NFC
+# NFC Support
 PRODUCT_PACKAGES += \
     libnfc \
-    libnfc_ndef \
     libnfc_jni \
     Nfc \
     Tag \
     com.android.nfc_extras
+
+# Lights
+#PRODUCT_PACKAGES += \
+#    lights.jet
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -130,20 +112,29 @@ PRODUCT_PACKAGES += \
    e2fsck \
    setup_fs
 
-# Media profiles
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/htc/jewel/configs/media_codecs.xml:system/etc/media_codecs.xml
-
 # Kernel Modules
 PRODUCT_COPY_FILES += $(shell \
     find device/htc/jewel/modules -name '*.ko' \
     | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
     | tr '\n' ' ')
 
+# Sprint specific APNs config
+PRODUCT_COPY_FILES += \
+    device/htc/jewel/configs/apns-conf.xml:system/etc/apns-conf.xml
+
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml
+
+## CDMA Sprint stuffs
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.clientidbase=android-sprint-us \
+    ro.com.google.locationfeatures=1 \
+    ro.cdma.home.operator.numeric=310120 \
+    ro.cdma.home.operator.alpha=Sprint
 
 # Extra properties
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -168,6 +159,3 @@ $(call inherit-product-if-exists, vendor/htc/jewel/jewel-vendor.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-PRODUCT_NAME := htc_jewel
-PRODUCT_DEVICE := jewel

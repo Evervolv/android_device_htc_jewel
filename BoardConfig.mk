@@ -27,10 +27,8 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := jewel
-
 
 # Kernel
 BOARD_KERNEL_CMDLINE :=  console=ttyHSL0,115200,n8 androidboot.hardware=jet
@@ -39,30 +37,25 @@ BOARD_FORCE_RAMDISK_ADDRESS := 0x81800000
 BOARD_KERNEL_PAGESIZE := 4096
 
 TARGET_PREBUILT_KERNEL := device/htc/jewel/prebuilt/kernel
-#TARGET_KERNEL_CONFIG := jewel_defconfig
-#TARGET_KERNEL_SOURCE := kernel/htc/jewel
+TARGET_KERNEL_CONFIG := jet_defconfig
+TARGET_KERNEL_SOURCE := kernel/htc/msm8960
+
 
 # Lights
 TARGET_PROVIDES_LIBLIGHTS := true
-
-# Camera
-#BOARD_HAVE_HTC_FFC := true
-
-# QCOM GPS
-#BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
-#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := jewel
-
-# vold / usb
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_MAX_PARTITIONS := 38
 
 # Wifi
 WIFI_DRIVER_MODULE_NAME          := prima_wlan
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/prima_wlan.ko"
 
-# NFC
-BOARD_HAVE_NFC := true
+# QCOM GPS
+#BOARD_USES_QCOM_GPS := true
+#BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := jet
+
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_MAX_PARTITIONS := 38
 
 #dev:        size     erasesize name
 #mmcblk0p23: 000ffa00 00000200 "misc"
