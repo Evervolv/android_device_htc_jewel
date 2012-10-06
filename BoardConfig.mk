@@ -39,7 +39,7 @@ BOARD_KERNEL_PAGESIZE := 4096
 TARGET_PREBUILT_KERNEL := device/htc/jewel/prebuilt/kernel
 TARGET_KERNEL_CONFIG := jet_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
-
+BUILD_KERNEL := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHTS := true
