@@ -24,6 +24,6 @@
     <bool name="tty_enabled">true</bool>
 
     <!-- Sprint Message Wait Indicator Quirk -->
-    <bool name="sprint_mwi_quirk">true</bool>
+    <!-- bool name="sprint_mwi_quirk">true</bool -->
 
 </resources>
