@@ -31,12 +31,6 @@
 TARGET_BOOTLOADER_BOARD_NAME := jewel
 
 # Kernel
-BOARD_KERNEL_CMDLINE :=  console=ttyHSL0,115200,n8 androidboot.hardware=jet
-BOARD_KERNEL_BASE :=  0x80400000
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
-BOARD_KERNEL_PAGESIZE := 4096
-
-TARGET_PREBUILT_KERNEL := device/htc/jewel/prebuilt/kernel
 TARGET_KERNEL_CONFIG := jet_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 BUILD_KERNEL := true
