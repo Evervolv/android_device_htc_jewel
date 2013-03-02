@@ -1,7 +1,7 @@
 # Inherit AOSP device configuration for jewel
 $(call inherit-product, device/htc/jewel/jewel.mk)
 # Inherit cdma config
-#$(call inherit-product, vendor/ev/config/cdma.mk)
+$(call inherit-product, vendor/ev/config/cdma.mk)
 
 # Inherit some common evervolv stuff.
 $(call inherit-product, vendor/ev/config/common_full_phone.mk)
