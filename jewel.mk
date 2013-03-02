@@ -132,4 +132,4 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 PRODUCT_NAME := htc_jewel
 PRODUCT_DEVICE := jewel
-PRODUCT_MODEL := Full Android on Jewel
+PRODUCT_MODEL := Evo 4G LTE

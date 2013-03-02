@@ -17,7 +17,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "EVO"
+#define BTM_DEF_LOCAL_NAME   "EVO 4G LTE"
 #define BTA_DISABLE_DELAY 1000 /* in milliseconds */
 
 #endif
