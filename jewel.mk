@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-# common msm8960 configs
-$(call inherit-product, device/htc/msm8960-common/msm8960.mk)
+# common S4 configs
+$(call inherit-product, device/htc/s4-common/s4.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/jewel/overlay
 

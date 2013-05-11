@@ -6,6 +6,12 @@
     "dep_type": "kernel"
   },
   {
+    "repository": "android_device_htc_s4-common",
+    "target_path": "device/htc/s4-common",
+    "branch": "jellybean",
+    "dep_type": "device"
+  },
+  {
     "repository": "android_device_htc_msm8960-common",
     "target_path": "device/htc/msm8960-common",
     "branch": "jellybean",
