@@ -1,32 +1,8 @@
 [
   {
-    "repository": "android_kernel_htc_msm8960",
-    "target_path": "kernel/htc/msm8960",
-    "branch": "jellybean",
-    "dep_type": "kernel"
-  },
-  {
     "repository": "android_device_htc_s4-common",
     "target_path": "device/htc/s4-common",
     "branch": "jellybean",
     "dep_type": "device"
-  },
-  {
-    "repository": "android_device_htc_msm8960-common",
-    "target_path": "device/htc/msm8960-common",
-    "branch": "jellybean",
-    "dep_type": "device"
-  },
-  {
-    "repository": "android_hardware_qcom_audio-caf",
-    "target_path": "hardware/qcom/audio-caf",
-    "branch": "jellybean",
-    "dep_type": "hardware"
-  },
-  {
-    "repository": "android_hardware_qcom_display-caf",
-    "target_path": "hardware/qcom/display-caf",
-    "branch": "jellybean",
-    "dep_type": "hardware"
   }
 ]
