@@ -35,6 +35,9 @@ TARGET_KERNEL_CONFIG := jet_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 BUILD_KERNEL := true
 
+# RIL
+BOARD_PROVIDES_LIBRIL := true
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/jewel/bluetooth
 
