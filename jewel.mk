@@ -24,10 +24,6 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc
 
-# vold.fstab
-PRODUCT_COPY_FILES += \
-    device/htc/jewel/configs/vold.fstab:system/etc/vold.fstab
-
 # Sound configs
 PRODUCT_COPY_FILES += \
     device/htc/jewel/dsp/soundimage/srs_bypass.cfg:system/etc/soundimage/srs_bypass.cfg \
