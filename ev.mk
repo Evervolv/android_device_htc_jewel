@@ -9,11 +9,12 @@ $(call inherit-product, vendor/ev/config/common_full_phone.mk)
 #
 # Setup device specific product configuration.
 #
-PRODUCT_NAME := ev_jewel
-PRODUCT_BRAND := sprint
 PRODUCT_DEVICE := jewel
-PRODUCT_MODEL := Evo 4G LTE
+PRODUCT_NAME := ev_jewel
+PRODUCT_BRAND := htc
+PRODUCT_MODEL := EVO
 PRODUCT_MANUFACTURER := HTC
+
 # Set build fingerprint / ID / Product Name ect.
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=jewel BUILD_ID=JRO03C BUILD_FINGERPRINT="htc/jewel/jewel:4.1.1/JRO03C/147243.3:user/release-keys" PRIVATE_BUILD_DESC="3.16.651.3 CL147243 release-keys"
 

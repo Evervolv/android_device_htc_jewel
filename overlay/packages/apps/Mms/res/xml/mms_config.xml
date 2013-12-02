@@ -51,7 +51,7 @@ version 4 - added sms to mms text threshold.
     <int name="maxMessageCountPerThread">5000</int>
 
     <!-- User-Agent parameter used in MMS http request -->
-    <string name="userAgent">Sprint APX325CKT Build/IML74K</string>
+    <string name="userAgent">EVO</string>
 
     <!-- UAProf URL -->
     <string name="uaProfUrl">http://device.sprintpcs.com/HTC/APX325CKT/1136511.rdf</string>
@@ -77,6 +77,7 @@ version 4 - added sms to mms text threshold.
          to indicate default value -->
     <int name="maxMessageTextSize">-1</int>
 
+    <!-- Support to hide Sprints VVM text messages -->
+    <bool name="enableSprintVVM">true</bool>
+
 </mms_config>
-
-
